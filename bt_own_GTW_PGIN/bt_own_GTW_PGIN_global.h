@@ -1,0 +1,12 @@
+#ifndef BT_OWN_GTW_PGIN_GLOBAL_H
+#define BT_OWN_GTW_PGIN_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(BT_OWN_GTW_PGIN_LIBRARY)
+#  define BT_OWN_GTW_PGINSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define BT_OWN_GTW_PGINSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // BT_OWN_GTW_PGIN_GLOBAL_H

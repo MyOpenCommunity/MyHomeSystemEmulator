@@ -1,0 +1,54 @@
+#-------------------------------------------------
+#
+# Project created by QtCreator 2012-06-12T14:54:05
+#
+#-------------------------------------------------
+
+QT       += core gui xml
+
+TARGET = MyOpenSimulator
+TEMPLATE = app
+VERSION = 1.3.0
+
+DEFINES += VERSION=\\\"$$VERSION\\\"
+
+SOURCES += main.cpp\
+        mainwindow.cpp \
+    dragdinwidget.cpp \
+    devicewidget.cpp \
+    deviceadapter.cpp \
+    devicemodel.cpp \
+    setupwidget.cpp \
+    graphwidget.cpp \
+    graphdialog.cpp \
+    histogram.cpp \
+    column.cpp \
+    settingdialog.cpp \
+    simulationtime.cpp
+
+HEADERS  += mainwindow.h \
+    dragdinwidget.h \
+    devicewidget.h \
+    deviceadapter.h \
+    devicemodel.h \
+    setupwidget.h \
+    graphwidget.h \
+    graphdialog.h \
+    histogram.h \
+    column.h \
+    settingdialog.h \
+    simulationtime.h
+
+FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resource.qrc
+
+
+
+INCLUDEPATH = ../libplant
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../BIN_libplant/release/ -llibplant
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../BIN_libplant/debug/ -llibplant
+else:symbian: LIBS += -llibplant
+else:unix: LIBS += -L$$PWD/../BIN_libplant/ -llibplant

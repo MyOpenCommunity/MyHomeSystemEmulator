@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>resources/F454.xml</file>
+        <file>resources/TotaleLedBucatiF454smallContorno.png</file>
+        <file>resources/mycertcert.pem</file>
+        <file>resources/mycertkey.pem</file>
+        <file>resources/blackCam.png</file>
+    </qresource>
+</RCC>

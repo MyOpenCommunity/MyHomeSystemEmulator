@@ -1,0 +1,31 @@
+<Device>
+        <Background size = "2" image = "genericDevice.png" />
+	<SensibleAreas>
+                <SensibleArea id = "L1" pos = "14,162" size = "12,12" />
+                <SensibleArea id = "L2" pos = "34,162" size = "12,12" />
+                <SensibleArea id = "L3" pos = "54,162" size = "12,12" />
+                <SensibleArea id = "L4" pos = "74,162" size = "12,12" />
+	</SensibleAreas>
+	<FeedbackAreas>
+                <FeedbackArea id = "L1" pos = "15,187" size = "10,10" initValue = "0">
+                        <FeedbackImage key = "1" image = "LedAcceso.png" />
+                        <FeedbackImage key = "0" image = "LedSpento.png" />
+                        <FeedbackImage key = "2" image = "LedNotConf.png" />
+		</FeedbackArea>
+                <FeedbackArea id = "L2" pos = "35,187" size = "10,10" initValue = "0">
+                        <FeedbackImage key = "1" image = "LedAcceso.png" />
+                        <FeedbackImage key = "0" image = "LedSpento.png" />
+                        <FeedbackImage key = "2" image = "LedNotConf.png" />
+		</FeedbackArea>
+                <FeedbackArea id = "L3" pos = "55,187" size = "10,10" initValue = "0">
+                        <FeedbackImage key = "1" image = "LedAcceso.png" />
+                        <FeedbackImage key = "0" image = "LedSpento.png" />
+                        <FeedbackImage key = "2" image = "LedNotConf.png" />
+		</FeedbackArea>
+                <FeedbackArea id = "L4" pos = "75,187" size = "10,10" initValue = "0">
+                        <FeedbackImage key = "1" image = "LedAcceso.png" />
+                        <FeedbackImage key = "0" image = "LedSpento.png" />
+                        <FeedbackImage key = "2" image = "LedNotConf.png" />
+		</FeedbackArea>
+	</FeedbackAreas>
+</Device>

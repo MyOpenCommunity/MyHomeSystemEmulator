@@ -1,0 +1,63 @@
+<plant cols="30" rows="2" id="default">
+ <bus type="Btscsbus" id="Main_Bus">
+  <gateway type="Btowngtw" id="GateWay_8466" pos="0,0">
+   <devattribute value="" name="password"/>
+  </gateway>
+  <device type="Btcam_dev" id="Device_291" pos="6,1">
+   <devattribute value="1" min="0" name="p" max="99"/>
+   <devattribute value="" type="folder" name="dir"/>
+  </device>
+  <device type="Btf411_2_dev" id="Device_6334" pos="0,1">
+   <devattribute values="PUL,NO_PUL" value="NO_PUL" type="comboBox" name="mode"/>
+   <devattribute values=",Main_Bus" value="Main_Bus" type="comboBox" name="bus"/>
+   <slot id="L1">
+    <attribute value="1" min="1" name="a" max="9"/>
+    <attribute value="1" min="1" name="pl" max="9"/>
+    <attribute value="1" min="1" name="group" max="9"/>
+   </slot>
+   <slot id="L2">
+    <attribute value="1" min="1" name="a" max="9"/>
+    <attribute value="2" min="1" name="pl" max="9"/>
+    <attribute value="1" min="1" name="group" max="9"/>
+   </slot>
+  </device>
+  <device type="Btf411_2_dev" id="Device_6498" pos="2,1">
+   <devattribute values="PUL,NO_PUL" value="NO_PUL" type="comboBox" name="mode"/>
+   <devattribute values=",Main_Bus" value="Main_Bus" type="comboBox" name="bus"/>
+   <slot id="L1">
+    <attribute value="2" min="1" name="a" max="9"/>
+    <attribute value="3" min="1" name="pl" max="9"/>
+    <attribute value="2" min="1" name="group" max="9"/>
+   </slot>
+   <slot id="L2">
+    <attribute value="2" min="1" name="a" max="9"/>
+    <attribute value="4" min="1" name="pl" max="9"/>
+    <attribute value="2" min="1" name="group" max="9"/>
+   </slot>
+  </device>
+  <device type="Btf411_4_dev" id="Device_9168" pos="4,1">
+   <devattribute values="PUL,NO_PUL" value="NO_PUL" type="comboBox" name="mode"/>
+   <devattribute values=",Main_Bus" value="Main_Bus" type="comboBox" name="bus"/>
+   <slot id="L1">
+    <attribute value="" min="1" name="a" max="9"/>
+    <attribute value="" min="1" name="pl" max="9"/>
+    <attribute value="" min="1" name="group" max="9"/>
+   </slot>
+   <slot id="L2">
+    <attribute value="" min="1" name="a" max="9"/>
+    <attribute value="" min="1" name="pl" max="9"/>
+    <attribute value="" min="1" name="group" max="9"/>
+   </slot>
+   <slot id="L3">
+    <attribute value="" min="1" name="a" max="9"/>
+    <attribute value="" min="1" name="pl" max="9"/>
+    <attribute value="" min="1" name="group" max="9"/>
+   </slot>
+   <slot id="L4">
+    <attribute value="" min="1" name="a" max="9"/>
+    <attribute value="" min="1" name="pl" max="9"/>
+    <attribute value="" min="1" name="group" max="9"/>
+   </slot>
+  </device>
+ </bus>
+</plant>

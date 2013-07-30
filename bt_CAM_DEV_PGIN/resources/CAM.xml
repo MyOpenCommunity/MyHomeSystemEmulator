@@ -1,0 +1,12 @@
+<Device>
+        <Background size = "3" image = "TotaleLedBucatiTelecamerasmallContorno.png" />
+	<SensibleAreas>
+	</SensibleAreas>
+	<FeedbackAreas>
+                <FeedbackArea id = "C1" pos = "17,165" size = "8,8" initValue = "2">
+                        <FeedbackImage key = "1" image = "LedAccesoCam.png" />
+                        <FeedbackImage key = "0" image = "LedSpentoCam.png" />
+                        <FeedbackImage key = "2" image = "LedNotConfCam.png" />
+		</FeedbackArea>
+	</FeedbackAreas>
+</Device>

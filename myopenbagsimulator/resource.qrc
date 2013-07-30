@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>resources/BarraDin.png</file>
+    </qresource>
+    <qresource prefix="/xml">
+        <file>resources/default.plnt</file>
+    </qresource>
+</RCC>

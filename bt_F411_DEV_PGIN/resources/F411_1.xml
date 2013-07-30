@@ -1,0 +1,13 @@
+<Device>
+        <Background size = "2" image = "TotaleLedBucatiF4111smallContorno.png" />
+	<SensibleAreas>
+                <SensibleArea id = "L1" pos = "14,162" size = "12,12" />
+	</SensibleAreas>
+	<FeedbackAreas>
+                <FeedbackArea id = "L1" pos = "15,187" size = "10,10" initValue = "2">
+                        <FeedbackImage key = "1" image = "LedAcceso.png" />
+                        <FeedbackImage key = "0" image = "LedSpento.png" />
+                        <FeedbackImage key = "2" image = "LedNotConf.png" />
+		</FeedbackArea>
+	</FeedbackAreas>
+</Device>

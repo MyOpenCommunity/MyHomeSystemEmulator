@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>resources/LedAccesoCam.png</file>
+        <file>resources/LedNotConfCam.png</file>
+        <file>resources/LedSpentoCam.png</file>
+        <file>resources/TotaleLedBucatiTelecamerasmallContorno.png</file>
+        <file>resources/CAM.xml</file>
+    </qresource>
+</RCC>

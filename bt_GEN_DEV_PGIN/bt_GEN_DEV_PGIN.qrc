@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>resources/GEN.xml</file>
+        <file>resources/genericDevice.png</file>
+        <file>resources/LedAcceso.png</file>
+        <file>resources/LedNotConf.png</file>
+        <file>resources/LedSpento.png</file>
+    </qresource>
+</RCC>

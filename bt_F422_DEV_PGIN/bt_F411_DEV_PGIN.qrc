@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>resources/F422.png</file>
+        <file>resources/F422.xml</file>
+    </qresource>
+</RCC>

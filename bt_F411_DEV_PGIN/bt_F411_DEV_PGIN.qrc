@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>resources/F411_1.xml</file>
+        <file>resources/F411_2.xml</file>
+        <file>resources/F411_4.xml</file>
+        <file>resources/LedAcceso.png</file>
+        <file>resources/LedNotConf.png</file>
+        <file>resources/LedSpento.png</file>
+        <file>resources/TotaleLedBucatiF4111smallContorno.png</file>
+        <file>resources/TotaleLedBucatiF4112smallContorno.png</file>
+        <file>resources/TotaleLedBucatiF4114smallContorno.png</file>
+    </qresource>
+</RCC>
