@@ -35,8 +35,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "..\BIN_myopenbagsimulator\release\MyOpenSimulator.exe"; DestDir: "{app}\bin"; Flags: ignoreversion; DestName:"VirtualDevelopmentKit.exe"
-Source: "..\BIN_libplant\release\libplant.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "..\BUILD_REL\MyOpenBagClient\release\MyOpenSimulator.exe"; DestDir: "{app}\bin"; Flags: ignoreversion; DestName:"VirtualDevelopmentKit.exe"
+Source: "..\BUILD_REL\libplant\release\libplant.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\Qt\4.8.4\bin\QtCore4.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\Qt\4.8.4\bin\QtGui4.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\Qt\4.8.4\bin\QtNetwork4.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
@@ -44,7 +44,7 @@ Source: "C:\Qt\4.8.4\bin\QtXml4.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\Qt\4.8.4\bin\QtXmlPatterns4.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\QtSDK\mingw\bin\libgcc_s_dw2-1.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "C:\QtSDK\mingw\bin\mingwm10.dll"; DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "..\myhome\*"; DestDir: "{app}\myhome"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\BUILD_REL\myhome\*"; DestDir: "{app}\myhome"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
