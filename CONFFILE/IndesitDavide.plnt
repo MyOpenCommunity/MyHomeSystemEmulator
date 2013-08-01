@@ -1,0 +1,11 @@
+<plant cols="30" rows="2" id="IndesitDavide">
+ <bus type="Btscsbus" id="Main_Bus">
+  <gateway type="Btowngtw" id="GateWay_41" pos="0,0">
+   <devattribute value="" name="password"/>
+  </gateway>
+  <device type="BtGen_dev" id="Device_8466" pos="6,0">
+   <devattribute value="/develop/bticino/MyOpenSimulator/plant/IndesitTestPlant_orig.xml" type="file" extension=".xml" name="xmlfile"/>
+   <devattribute values=",Main_Bus" value="Main_Bus" type="comboBox" name="bus"/>
+  </device>
+ </bus>
+</plant>

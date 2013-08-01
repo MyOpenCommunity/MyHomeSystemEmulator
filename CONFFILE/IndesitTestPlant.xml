@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<SimulatorScenarios>
+	<Scenario descr="START Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*30*1*1#0##" descr="START"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:1" descr="START"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="START"/>
+				<Message chan="MON" delay="0" value="*30*1*1#0##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#0*2*1##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#0*7*[1..1000]##" descr="START" />
+			</Action>
+		</Actions>
+	</Scenario>
+		<Scenario descr="START Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#0*2##" descr="START"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#*1##" descr="START"/>
+				<Message chan="MON" delay="0" value="*#30*1#0*2*1##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#0*7*[1..1000]##" descr="START" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="START Washing machine Button Click">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="L1" descr="START"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:1" descr="START"/> <!-- ACCENDO LED 1 -->
+				<Message chan="MON" delay="0" value="*30*1*1#0##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#0*2*1##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#0*7*[1..1000]##" descr="START" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="PAUSE Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*30*2*1#0##" descr="PAUSE"/>			
+		</Trigger>		
+		<Actions>
+			<Action> 	
+				<Message chan="GUI" delay="0" value="L1:2" descr="PAUSE"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="PAUSE"/>
+				<Message chan="MON" delay="0" value="*30*2*1#0##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#0*2*6##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#0*7*[1..1000]##" descr="PAUSE" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="PAUSE Washing machine Button Click">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="L2" descr="PAUSE"/>			
+		</Trigger>		
+		<Actions>
+			<Action> 	
+				<Message chan="GUI" delay="0" value="L1:2" descr="PAUSE"/> <!-- ACCENDO LED 1 -->
+				<Message chan="MON" delay="0" value="*30*2*1#0##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#0*2*6##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#0*7*[1..1000]##" descr="PAUSE" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="STOP Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*30*0*1#0##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:0" descr="STOP"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*30*0*1#0##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#0*2*2##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#0*7*[1..9]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+		<Scenario descr="STOP Washing machine Button Click">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="L3" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:0" descr="STOP"/> <!-- ACCENDO LED 1 -->
+				<Message chan="MON" delay="0" value="*30*0*1#0##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#0*2*2##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#0*7*[1..9]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="TEST">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*1*0*15##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:1" descr="STOP"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="GUI" delay="500" value="L1:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*15##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L1:1" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L1:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L1:2" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L1:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L1:1" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L1:2" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L1:0" descr="TEST"/>
+			</Action>
+						<Action>
+				<Message chan="GUI" delay="500" value="L3:1" descr="STOP"/> <!-- ACCENDO LED 1 -->
+				<Message chan="GUI" delay="500" value="L3:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*15##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L3:1" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L3:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L3:2" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L3:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L3:1" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L3:2" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..9]#[1..9]#[1..9]#[1..9]##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L3:0" descr="TEST"/>
+			</Action>
+						<Action>
+				<Message chan="GUI" delay="500" value="L4:1" descr="STOP"/> <!-- ACCENDO LED 1 -->
+				<Message chan="GUI" delay="500" value="L4:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*15##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L4:1" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..9]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L4:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L4:2" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L4:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L4:1" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L4:2" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L4:0" descr="TEST"/>
+			</Action>
+			<Action>
+				<Message chan="GUI" delay="500" value="L2:1" descr="STOP"/> <!-- ACCENDO LED 1 -->
+				<Message chan="GUI" delay="500" value="L2:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*15##" descr="STOP" />
+				<Message chan="GUI" delay="500" value="L2:1" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L2:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L2:2" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L2:0" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L2:1" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L2:2" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*1*0*[1..99]#[1..99]#[1..99]#[1..99]##" descr="TEST" />
+				<Message chan="GUI" delay="500" value="L2:0" descr="TEST"/>
+			</Action>
+		</Actions>
+	</Scenario>
+</SimulatorScenarios>

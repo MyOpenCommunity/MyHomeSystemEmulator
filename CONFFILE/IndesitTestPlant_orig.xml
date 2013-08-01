@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<SimulatorScenarios>
+	<Scenario descr="START Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*30*1*1#3##" descr="START"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:1" descr="START"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="START"/>
+				<Message chan="MON" delay="0" value="*30*1*1#3##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#3*2*5##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#3*7*[1..10]##" descr="START" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="START Washing machine Button Click">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="L1" descr="START"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:1" descr="START"/> <!-- ACCENDO LED 1 -->
+				<Message chan="MON" delay="0" value="*30*1*1#3##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#3*2*5##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#3*7*[1..10]##" descr="START" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="PAUSE Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*30*3*1#3##" descr="PAUSE"/>			
+		</Trigger>		
+		<Actions>
+			<Action> 	
+				<Message chan="GUI" delay="0" value="L1:2" descr="PAUSE"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="PAUSE"/>
+				<Message chan="MON" delay="0" value="*30*3*1#3##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#3*2*6##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#3*7*[1..10]##" descr="PAUSE" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="PAUSE Washing machine Button Click">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="L2" descr="PAUSE"/>			
+		</Trigger>		
+		<Actions>
+			<Action> 	
+				<Message chan="GUI" delay="0" value="L1:2" descr="PAUSE"/> <!-- ACCENDO LED 1 -->
+				<Message chan="MON" delay="0" value="*30*3*1#3##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#3*2*6##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#3*7*[1..10]##" descr="PAUSE" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="STOP Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*30*2*1#3##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:0" descr="STOP"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*30*2*1#3##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#3*2*7##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#3*7*[1..10]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+		<Scenario descr="STOP Washing machine Button Click">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="L3" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:0" descr="STOP"/> <!-- ACCENDO LED 1 -->
+				<Message chan="MON" delay="0" value="*30*3*1#3##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#3*2*7##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#3*7*[1..10]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+		<Scenario descr="Richiesta Lettura Ciclo">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#3*1##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#3*1*[1..10]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#3*1*[1..10]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+		<Scenario descr="Richiesta Stato elettrodomestico">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#3*2##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#3*2*[1..6]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#3*2*[1..6]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta Temperatura Impostata">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#3*3##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#3*3*[1..100]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#3*3*[1..100]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta Centrifuga Impostata">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#3*4##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#3*4*[1..2000]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#3*4*[1..2000]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta Durata del ciclo impostato">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#3*5##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#3*5*[1..255]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#3*5*[1..255]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Time to end">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#3*6##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#3*6*[1..255]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#30*1#3*1*[1..10]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#3*6*[1..255]##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#3*1*[1..10]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Fase di Lavaggio">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#3*7##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#3*7*[1..10]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#3*7*[1..10]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	
+	<Scenario descr="Scrittura time">
+		<Trigger>								 
+			<Message chan="CMD" delay="0" value="*#13**#0*23*59*0*001##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#13**#0*23*59*0*001##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#13**#0*23*59*0*001##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta time">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#13**0##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#13**0*[0..23]*[0..59]*[0..59]*001##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#13**0*[0..23]*[0..59]*[0..59]*001##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Scrittura date">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#13**#1*1*1*2012##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#13**#[0..6]*[1..31]*[1..12]*[2000..2099]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#13**#[0..6]*[1..31]*[1..12]*[2000..2099]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta date">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#13**1##" descr="STOP"/>				
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#13**1*[0..6]*[1..31]*[1..12]*[2000..2099]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#13**1*[0..6]*[1..31]*[1..12]*[2000..2099]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	
+	<Scenario descr="Richiesta IP address">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#13**10##" descr="STOP"/>				
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#13**10*[1..255]*[1..255]*[1..255]*[1..255]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#13**10*[1..255]*[1..255]*[1..255]*[1..255]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	
+	<Scenario descr="Firmware version">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#1013**2##" descr="STOP"/>				
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#1013**2*[1..9]*[1..9]*[1..9]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#1013**2*[1..9]*[1..9]*[1..9]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	
+	<Scenario descr="Richiesta totalizzatore energia">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#18*1#3*51##" descr="STOP"/>				
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#18*1#3*51*[1..1000]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#18*1#3*51*[1..1000]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta Potenza Attiva">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#18*1#3*113##" descr="STOP"/>				
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#18*1#3*113*[1..1000]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#18*1#3*113*[1..1000]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+		<Scenario descr="Start aggiornamento automatica grandezza">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#18*1#3*#1200#1*1##" descr="STOP"/>				
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#18*1#3*1200#1*2##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#18*1#3*113*[0..255]##" descr="STOP" />
+			</Action>
+			<Action from="1" repeat="5" >
+				<Message chan="MON" delay="1003" value="*#18*1#3*113*[0..255]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	
+	
+	
+	<!-- Washing Machine 4 -->
+	
+		<Scenario descr="START Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*30*1*1#4##" descr="START"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:1" descr="START"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="START"/>
+				<Message chan="MON" delay="0" value="*30*1*1#4##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#4*2*5##" descr="START" />
+				<Message chan="MON" delay="0" value="*#30*1#4*7*[1..10]##" descr="START" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="PAUSE Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*30*3*1#4##" descr="PAUSE"/>			
+		</Trigger>		
+		<Actions>
+			<Action> 	
+				<Message chan="GUI" delay="0" value="L1:2" descr="PAUSE"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="PAUSE"/>
+				<Message chan="MON" delay="0" value="*30*3*1#4##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#4*2*6##" descr="PAUSE" />
+				<Message chan="MON" delay="0" value="*#30*1#4*7*[1..10]##" descr="PAUSE" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="STOP Washing machine">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*30*2*1#4##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="GUI" delay="0" value="L1:0" descr="STOP"/> <!-- ACCENDO LED 1 -->
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*30*2*1#4##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#4*2*7##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#4*7*[1..10]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta Lettura Ciclo">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#4*1##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#4*1*[1..10]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#4*1*[1..10]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+		<Scenario descr="Richiesta Stato elettrodomestico">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#4*2##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#4*2*[1..6]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#4*2*[1..6]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta Temperatura Impostata">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#4*3##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#4*3*[1..100]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#4*3*[1..100]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta Centrifuga Impostata">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#4*4##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#4*4*[1..2000]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#4*4*[1..2000]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta Durata del ciclo impostato">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#4*5##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#4*5*[1..255]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#4*5*[1..255]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Time to end">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#4*6##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#4*6*[1..255]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#30*1#4*1*[1..10]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#4*6*[1..255]##" descr="STOP" />
+				<Message chan="MON" delay="0" value="*#30*1#4*1*[1..10]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Fase di Lavaggio">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#4*7##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#4*7*[1..10]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#4*7*[1..10]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta totalizzatore energia">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#18*1#4*51##" descr="STOP"/>				
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#18*1#4*51*[1..1000]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#18*1#4*51*[1..1000]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Richiesta Potenza Attiva">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#18*1#4*113##" descr="STOP"/>				
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#18*1#4*113*[1..1000]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#18*1#4*113*[1..1000]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	<Scenario descr="Start aggiornamento automatica grandezza">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#18*1#4*#1200#1*1##" descr="STOP"/>				
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#*1##" descr="Send ACK"/>
+				<Message chan="MON" delay="0" value="*#18*1#4*1200#1*2##" descr="Send Responce" />
+				<Message chan="MON" delay="0" value="*#18*1#4*113*[0..255]##" descr="SEnt Firt answare" />
+			</Action>
+			<Action from="1" repeat="5" >
+				<Message chan="MON" delay="1003" value="*#18*1#4*113*[0..255]##" descr="Send answare" />
+			</Action>
+		</Actions>
+	</Scenario>
+	
+	<!-- Washing machine 1 -->
+
+	<Scenario descr="Richiesta Stato elettrodomestico">
+		<Trigger>
+			<Message chan="CMD" delay="0" value="*#30*1#1*2##" descr="STOP"/>			
+		</Trigger>		
+		<Actions>
+			<Action>
+				<Message chan="CMD" delay="0" value="*#30*1#1*2*[1..6]##" descr="STOP" />
+				<Message chan="CMD" delay="0" value="*#*1##" descr="STOP"/>
+				<Message chan="MON" delay="0" value="*#30*1#1*2*[1..6]##" descr="STOP" />
+			</Action>
+		</Actions>
+	</Scenario>
+	
+</SimulatorScenarios>

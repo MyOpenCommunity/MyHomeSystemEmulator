@@ -1,0 +1,12 @@
+<plant cols="31" rows="4" id="Plant_1">
+ <bus type="Btscsbus" id="Main_Bus">
+  <gateway type="Btowngtw" id="GateWay_41" pos="0,0">
+   <devattribute value="" name="password"/>
+  </gateway>
+  <device type="BtF520_dev" id="Device_6987" pos="6,0">
+   <devattribute value="522" min="1" name="where" max="255"/>
+   <devattribute value="../myhome/Resources/Device_6987_energy_configuration.xml" name="src"/>
+   <devattribute value="3000" name="max_nrg"/>
+  </device>
+ </bus>
+</plant>

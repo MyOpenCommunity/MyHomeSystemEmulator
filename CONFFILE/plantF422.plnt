@@ -1,0 +1,25 @@
+<plant cols="30" rows="2" id="Palnt">
+ <bus type="Btscsbus" id="Bus_481">
+  <gateway type="Btowngtw" id="GateWay_4144" pos="0,0">
+   <devattribute value="" name="password"/>
+  </gateway>
+  <device type="BtGen_dev" id="Device_3194" pos="6,0">
+   <devattribute value="C:/develop/BTicino/MyOpenBag/IndesitTestPlant.xml" type="file" extension=".xml" name="xmlfile"/>
+   <devattribute values=",Bus_481,Bus_11" value="Bus_481" type="comboBox" name="bus"/>
+  </device>
+  <device type="Btf411_1_dev" id="Device_4192" pos="10,0">
+   <devattribute values="PUL,NO_PUL" value="NO_PUL" type="comboBox" name="mode"/>
+   <devattribute values=",Bus_481,Bus_11" value="Bus_481" type="comboBox" name="bus"/>
+   <slot id="L1">
+    <attribute value="1" min="1" name="a" max="9"/>
+    <attribute value="1" min="1" name="pl" max="9"/>
+    <attribute value="1" min="1" name="group" max="9"/>
+   </slot>
+  </device>
+  <device type="Btf422_dev" id="Device_6987" pos="8,0">
+   <devattribute value="1" min="0" name="I3" max="9"/>
+   <devattribute value="1" min="0" name="I4" max="9"/>
+  </device>
+ </bus>
+ <bus type="BtScsBusConn" id="Bus_11"/>
+</plant>
