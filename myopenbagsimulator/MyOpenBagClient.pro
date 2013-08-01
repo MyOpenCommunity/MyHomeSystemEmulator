@@ -48,7 +48,7 @@ RESOURCES += \
 
 INCLUDEPATH = ../libplant
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../BIN_libplant/release/ -llibplant
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../BIN_libplant/debug/ -llibplant
-else:symbian: LIBS += -llibplant
-else:unix: LIBS += -L$$PWD/../BIN_libplant/ -llibplant
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../BUILD_REL/libplant/release/ -llibplant
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../BUILD_DEB/libplant/debug/ -llibplant
+else:unix:CONFIG(release, debug|release) LIBS += -L$$PWD/../BUILD_REL/libplant -llibplant
+else:unix:CONFIG(debug, debug|release) LIBS += -L$$PWD/../BUILD_DEB/libplant -llibplant

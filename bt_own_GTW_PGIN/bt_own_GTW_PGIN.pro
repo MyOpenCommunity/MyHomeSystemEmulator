@@ -40,10 +40,10 @@ HEADERS += bt_own_gtw_pgin.h\
     openmsgdiagnostics.h \
     openmsg.h
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../BIN_libplant/release/ -llibplant
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../BIN_libplant/debug/ -llibplant
-else:unix: LIBS += -L$$PWD/../BIN_libplant -llibplant -L/usr/lib/i386-linux-gnu/ -lssl
-
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../BUILD_REL/libplant/release/ -llibplant
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../BUILD_DEB/libplant/debug/ -llibplant
+else:unix:CONFIG(release, debug|release) LIBS += -L$$PWD/../BUILD_REL/libplant -llibplant
+else:unix:CONFIG(debug, debug|release) LIBS += -L$$PWD/../BUILD_DEB/libplant -llibplant
 
 unix:!symbian {
     maemo5 {
