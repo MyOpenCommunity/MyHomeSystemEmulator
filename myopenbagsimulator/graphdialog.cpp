@@ -230,7 +230,7 @@ void GraphDialog::handleSelectionChanged(int index) {
     m_tabWidget->insertTab(m_tabWidget->count(), m_configurationTab, "Configuration");
 }
 
-QString GraphDialog::newConfParam(SysError &sysErr) {
+QString GraphDialog::newConfParam(SysError &/*sysErr*/) {
     QDomDocument domDoc;
 
     QDomElement device = domDoc.createElement(DEVICE);

@@ -8,6 +8,7 @@
 static const QString ENEGY = "18";
 static const QString STATO_ENEGY = "#18";
 static const QString MSG_ACK = "*#*1##";
+static const QString MSG_NACK = "*#*0##";
 static const QString RESOURCE_FOLDER = ":/files/resources/";
 static const QString RESOURCE_XML = "F520.xml";
 
@@ -182,7 +183,7 @@ void    BtF520_dev::unRegisterEventHnd(EventHandler* /*theHnd*/) {
 
 }
 
-void    BtF520_dev::ReceiveMessage( PlantMessage &theMsg, SysError &theErr) {
+void    BtF520_dev::ReceiveMessage( PlantMessage &theMsg, SysError &/*theErr*/) {
 
     qDebug() << className() << " " << m_deviceID << ": Receive Message from Bus" ;
     QPair<QString, QString>  destAddr = theMsg.getDestAddr();
@@ -192,12 +193,12 @@ void    BtF520_dev::ReceiveMessage( PlantMessage &theMsg, SysError &theErr) {
         qDebug() << PlantMessage::WHAT << theMsg.getValue(PlantMessage::WHAT);
         qDebug() << PlantMessage::WHERE << theMsg.getValue(PlantMessage::WHERE);
 
-        if (((theMsg.getValues().contains(PlantMessage::WHO) && theMsg.getValue(PlantMessage::WHO).compare(ENEGY) == 0) &&
-             theMsg.getValues().contains(PlantMessage::WHAT) &&
-             theMsg.getValues().contains(PlantMessage::WHERE) ) ||
+        if ((((theMsg.getValues().contains(PlantMessage::WHO) && theMsg.getValue(PlantMessage::WHO).compare(ENEGY) == 0) &&
+              theMsg.getValues().contains(PlantMessage::WHAT) &&
+              theMsg.getValues().contains(PlantMessage::WHERE) ) ||
 
-                ((theMsg.getValues().contains(PlantMessage::WHO) && theMsg.getValue(PlantMessage::WHO).compare(STATO_ENEGY) == 0) &&
-                 (theMsg.getValues().contains(PlantMessage::DIMENSION) )) &&
+             ((theMsg.getValues().contains(PlantMessage::WHO) && theMsg.getValue(PlantMessage::WHO).compare(STATO_ENEGY) == 0) &&
+              (theMsg.getValues().contains(PlantMessage::DIMENSION) ))) &&
 
                 !theMsg.getValue(PlantMessage::WHERE).compare(m_f520Status->getWhere())) {
             qDebug() << className() << " " << m_deviceID << ": It is an energy message" ;
@@ -224,6 +225,8 @@ void BtF520_dev::commandFrame(PlantMessage &theMsg) {
     switch (whatValue.at(0).toInt()) {
     case DAILY_TOTALIZER:
     {
+        if (whatValue.length() != 3)
+            return;
         sendACK(theMsg);
         QStringList energyVal = F520xmlserializer::query(m_f520Status, whatValue.at(2), whatValue.at(1), theErr).split('.');
         PlantMessage rspMessage;
@@ -233,7 +236,7 @@ void BtF520_dev::commandFrame(PlantMessage &theMsg) {
         rspMessage.setValue(PlantMessage::WHERE, theMsg.getValue(PlantMessage::WHERE));
         rspMessage.setSourceAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::DEVICE), true);
 
-        QString what = DAILY_TOTALIZER_RESPONSE + "#" + whatValue.at(1) + "#" + whatValue.at(2);
+        QString what = QString::number(DAILY_TOTALIZER_RESPONSE) + "#" + whatValue.at(1) + "#" + whatValue.at(2);
         rspMessage.setValue(PlantMessage::DIMENSION, what);
 
         rspMessage.setId(theMsg.getId());
@@ -257,6 +260,8 @@ void BtF520_dev::commandFrame(PlantMessage &theMsg) {
         break;
     case MONTHLY_TOTALIZER:
     {
+        if (whatValue.length() != 2)
+            return;
         sendACK(theMsg);
         QStringList energyVal = F520xmlserializer::query(m_f520Status, whatValue.at(1), theErr);
         PlantMessage rspMessage;
@@ -266,7 +271,7 @@ void BtF520_dev::commandFrame(PlantMessage &theMsg) {
         rspMessage.setValue(PlantMessage::WHERE, theMsg.getValue(PlantMessage::WHERE));
         rspMessage.setSourceAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::DEVICE), true);
 
-        QString what = MONTHLY_TOTALIZER_RESPONSE + "#" + whatValue.at(1);
+        QString what = QString::number(MONTHLY_TOTALIZER_RESPONSE) + "#" + whatValue.at(1);
         rspMessage.setValue(PlantMessage::DIMENSION, what);
 
         rspMessage.setId(theMsg.getId());
@@ -285,6 +290,8 @@ void BtF520_dev::commandFrame(PlantMessage &theMsg) {
         break;
     case AVARAGE_MONTHLY:
     {
+        if (whatValue.length() != 2)
+            return;
         sendACK(theMsg);
         QStringList energyVal = F520xmlserializer::avarageQuery(m_f520Status, whatValue.at(1), theErr).split('.');
         PlantMessage rspMessage;
@@ -294,7 +301,7 @@ void BtF520_dev::commandFrame(PlantMessage &theMsg) {
         rspMessage.setValue(PlantMessage::WHERE, theMsg.getValue(PlantMessage::WHERE));
         rspMessage.setSourceAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::DEVICE), true);
 
-        QString what = AVARAGE_MONTHLY_RESPONSE + "#" + whatValue.at(1);
+        QString what = QString::number(AVARAGE_MONTHLY_RESPONSE) + "#" + whatValue.at(1);
         rspMessage.setValue(PlantMessage::DIMENSION, what);
 
         rspMessage.setId(theMsg.getId());
@@ -320,6 +327,8 @@ void BtF520_dev::commandFrame(PlantMessage &theMsg) {
         break;
     case MONTHLY_LAST_YEAR_TOTALIZER:
     {
+        if (whatValue.length() != 2)
+            return;
         sendACK(theMsg);
         QStringList energyVal = F520xmlserializer::lastYearQuery(m_f520Status, whatValue.at(1), theErr).split('.');
         PlantMessage rspMessage;
@@ -329,7 +338,7 @@ void BtF520_dev::commandFrame(PlantMessage &theMsg) {
         rspMessage.setValue(PlantMessage::WHERE, theMsg.getValue(PlantMessage::WHERE));
         rspMessage.setSourceAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::DEVICE), true);
 
-        QString what = MONTHLY_LAST_YEAR_TOTALIZER_RESPONSE + "#" + whatValue.at(1);
+        QString what = QString::number(MONTHLY_LAST_YEAR_TOTALIZER_RESPONSE) + "#" + whatValue.at(1);
         rspMessage.setValue(PlantMessage::DIMENSION, what);
 
         rspMessage.setId(theMsg.getId());
@@ -348,16 +357,16 @@ void BtF520_dev::commandFrame(PlantMessage &theMsg) {
     case RESET_TOTALIZER:
     {
         // Not implemented for F520
-//        qDebug() << "Reset totalizer " << whatValue.at(1);
-//        QString resetTime = QString::number(m_currentDay) + '.' + QString::number(m_currentMonth) + '.' + QString::number(CURRENT_YEAR)
-//                + '.' + QString::number(m_currentHour) + '.' + QString::number(m_currentMinute);
-//        if(m_totalizers.length() >= whatValue.at(1).toInt() && whatValue.at(1).toInt() > 0) {
-//            m_totalizers[whatValue.at(1).toInt()-1] = 0;
-//            m_lastReset[whatValue.at(1).toInt()-1] = resetTime;
-//        }
-//        else
-//            qDebug() << "Totalizer " << whatValue.at(1) << " not exist";
-//        sendACK(theMsg);
+        //        qDebug() << "Reset totalizer " << whatValue.at(1);
+        //        QString resetTime = QString::number(m_currentDay) + '.' + QString::number(m_currentMonth) + '.' + QString::number(CURRENT_YEAR)
+        //                + '.' + QString::number(m_currentHour) + '.' + QString::number(m_currentMinute);
+        //        if(m_totalizers.length() >= whatValue.at(1).toInt() && whatValue.at(1).toInt() > 0) {
+        //            m_totalizers[whatValue.at(1).toInt()-1] = 0;
+        //            m_lastReset[whatValue.at(1).toInt()-1] = resetTime;
+        //        }
+        //        else
+        //            qDebug() << "Totalizer " << whatValue.at(1) << " not exist";
+        //        sendACK(theMsg);
     }
         break;
     default:
@@ -376,6 +385,8 @@ void BtF520_dev::requestFrame(PlantMessage &theMsg) {
     switch (dimension) {
     case REQUEST_DAILY_TOTALIZER:
     {
+        if (dimParameter.length() != 3)
+            return;
         QString month = dimParameter[1];
         QString day = dimParameter[2];
         QStringList energyVal = F520xmlserializer::query(m_f520Status, day, month, theErr).split('.');
@@ -418,26 +429,26 @@ void BtF520_dev::requestFrame(PlantMessage &theMsg) {
     case REQUEST_TOTALIZER:
     {
         // Not implemented for F520
-//        if (dimParameter[1].toInt() < 1 || dimParameter[1].toInt() > 2) {
-//            break;
-//        }
-//        PlantMessage rspMessage;
-//        rspMessage.setType(PlantMessage::EVENT);
-//        rspMessage.setValue(PlantMessage::WHO, STATO_ENEGY);
-//        rspMessage.setValue(PlantMessage::WHERE, theMsg.getValue(PlantMessage::WHERE));
-//        rspMessage.setSourceAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::DEVICE), true);
-//        rspMessage.setDestAddr(QPair<QString, QString>(PlantMessage::EXTERNAL, theMsg.getSourceAddr().second), true);
-//        rspMessage.setId(theMsg.getId());
-//        QString dimension = QString::number(REQUEST_TOTALIZER) + "#" + dimParameter[1];
-//        rspMessage.setValue(PlantMessage::DIMENSION, dimension);
-//        rspMessage.setValue(PlantMessage::DIM_VALUE + 1, QString::number(m_totalizers[dimParameter[1].toInt() - 1]));
-//        for (int index = 2; index < m_lastReset[dimParameter[1].toInt() - 1].split('.').length() + 1; index++) {
-//            rspMessage.setValue(PlantMessage::DIM_VALUE + index, m_lastReset[dimParameter[1].toInt() - 1].split('.')[index-2]);
-//        }
-//        emit ReleaseMessage(rspMessage, theErr);
-//        sendACK(theMsg);
-//        rspMessage.setDestAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::GATEWAY), true);
-//        emit ReleaseMessage(rspMessage, theErr);
+        //        if (dimParameter[1].toInt() < 1 || dimParameter[1].toInt() > 2) {
+        //            break;
+        //        }
+        //        PlantMessage rspMessage;
+        //        rspMessage.setType(PlantMessage::EVENT);
+        //        rspMessage.setValue(PlantMessage::WHO, STATO_ENEGY);
+        //        rspMessage.setValue(PlantMessage::WHERE, theMsg.getValue(PlantMessage::WHERE));
+        //        rspMessage.setSourceAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::DEVICE), true);
+        //        rspMessage.setDestAddr(QPair<QString, QString>(PlantMessage::EXTERNAL, theMsg.getSourceAddr().second), true);
+        //        rspMessage.setId(theMsg.getId());
+        //        QString dimension = QString::number(REQUEST_TOTALIZER) + "#" + dimParameter[1];
+        //        rspMessage.setValue(PlantMessage::DIMENSION, dimension);
+        //        rspMessage.setValue(PlantMessage::DIM_VALUE + 1, QString::number(m_totalizers[dimParameter[1].toInt() - 1]));
+        //        for (int index = 2; index < m_lastReset[dimParameter[1].toInt() - 1].split('.').length() + 1; index++) {
+        //            rspMessage.setValue(PlantMessage::DIM_VALUE + index, m_lastReset[dimParameter[1].toInt() - 1].split('.')[index-2]);
+        //        }
+        //        emit ReleaseMessage(rspMessage, theErr);
+        //        sendACK(theMsg);
+        //        rspMessage.setDestAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::GATEWAY), true);
+        //        emit ReleaseMessage(rspMessage, theErr);
     }
         break;
     case REQUEST_ACTIVE_POWER:
@@ -451,6 +462,8 @@ void BtF520_dev::requestFrame(PlantMessage &theMsg) {
         rspMessage.setId(theMsg.getId());
         rspMessage.setValue(PlantMessage::DIMENSION, QString::number(REQUEST_ACTIVE_POWER));
         QStringList energyVal = F520xmlserializer::query(m_f520Status, QString::number(m_currentDay), QString::number(m_currentMonth), theErr).split('.');
+        if (m_currentHour < 0)
+            return;
         rspMessage.setValue(PlantMessage::DIM_VALUE + 1, energyVal[m_currentHour]);
         sendACK(theMsg);
         rspMessage.setDestAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::GATEWAY), true);
@@ -460,7 +473,8 @@ void BtF520_dev::requestFrame(PlantMessage &theMsg) {
 
     case REQUEST_TOTALIZER_MONTH:
     {
-
+        if (dimParameter.length() != 3)
+            return;
         PlantMessage rspMessage;
         rspMessage.setType(PlantMessage::EVENT);
         rspMessage.setValue(PlantMessage::WHO, STATO_ENEGY);
@@ -529,7 +543,7 @@ void BtF520_dev::requestFrame(PlantMessage &theMsg) {
         break;
     case START_STOP_SENDING_ACT_PWR:
     {
-        if (dimParameter[1].toInt() == START_STOP_SENDING_ACT_PWR_PAR) {
+        if ((dimParameter.length() == 3) && (dimParameter[1].toInt() == START_STOP_SENDING_ACT_PWR_PAR)) {
             sendACK(theMsg);
             PlantMessage rspMessage;
             rspMessage.setType(PlantMessage::EVENT);
@@ -607,7 +621,7 @@ void BtF520_dev::UpdateTime(int month, int day, int hour, int minute) {
 
     qDebug() << className() << " m_totalizer1: " << m_totalizers[0] << " m_totalizer2: " << m_totalizers[1];
 
-    if (m_actPwrisToSend && (m_actPwrTimer == m_timePassed)) {
+    if (m_actPwrisToSend && (m_actPwrTimer < m_timePassed)) {
         activePwrTimeout();
         m_timePassed = 0;
     } else {
@@ -617,19 +631,22 @@ void BtF520_dev::UpdateTime(int month, int day, int hour, int minute) {
 
 void BtF520_dev::activePwrTimeout() {
     SysError theErr;
+    qDebug() << className() << "activePwrTimeout";
 
     QStringList energyVal = F520xmlserializer::query(m_f520Status, QString::number(m_currentDay), QString::number(m_currentMonth), theErr).split('.');
-    if (m_lastNrgSent.compare(energyVal[m_currentHour]) == 0)
-        return;
-    PlantMessage rspMessage;
-    rspMessage.setType(PlantMessage::EVENT);
-    rspMessage.setValue(PlantMessage::WHO, STATO_ENEGY);
-    rspMessage.setValue(PlantMessage::WHERE, m_f520Status->getWhere());
-    rspMessage.setSourceAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::DEVICE), true);
-    rspMessage.setDestAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::GATEWAY), true);
-    rspMessage.setId(0);
-    rspMessage.setValue(PlantMessage::DIMENSION, QString::number(REQUEST_ACTIVE_POWER));
-    rspMessage.setValue(PlantMessage::DIM_VALUE + 1, energyVal[m_currentHour]);
-    m_lastNrgSent = energyVal[m_currentHour];
-    emit ReleaseMessage(rspMessage, theErr);
+    if (m_currentHour > 0) {
+        if (m_lastNrgSent.compare(energyVal[m_currentHour]) == 0)
+            return;
+        PlantMessage rspMessage;
+        rspMessage.setType(PlantMessage::EVENT);
+        rspMessage.setValue(PlantMessage::WHO, STATO_ENEGY);
+        rspMessage.setValue(PlantMessage::WHERE, m_f520Status->getWhere());
+        rspMessage.setSourceAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::DEVICE), true);
+        rspMessage.setDestAddr(QPair<QString, QString>(PlantMessage::INTERNAL, PlantMessage::GATEWAY), true);
+        rspMessage.setId(0);
+        rspMessage.setValue(PlantMessage::DIMENSION, QString::number(REQUEST_ACTIVE_POWER));
+        rspMessage.setValue(PlantMessage::DIM_VALUE + 1, energyVal[m_currentHour]);
+        m_lastNrgSent = energyVal[m_currentHour];
+        emit ReleaseMessage(rspMessage, theErr);
+    }
 }

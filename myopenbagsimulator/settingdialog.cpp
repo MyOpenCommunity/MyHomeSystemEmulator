@@ -94,9 +94,9 @@ int SettingDialog::getDay() {
 }
 
 int SettingDialog::getMonth() {
-    m_month->currentIndex();
+    return m_month->currentIndex();
 }
 
 int SettingDialog::getMonthDaysNum() {
-    m_day->count();
+    return m_day->count();
 }

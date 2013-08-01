@@ -77,7 +77,7 @@ Qt::GlobalColor Histogram::getColor()
     return Qt::transparent;
 }
 
-void Histogram::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
+void Histogram::paint(QPainter *painter, const QStyleOptionGraphicsItem */*option*/, QWidget *)
 {
     painter->setPen(Qt::NoPen);
     painter->setBrush(this->getColor());

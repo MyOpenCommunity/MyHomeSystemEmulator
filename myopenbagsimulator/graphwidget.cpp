@@ -63,7 +63,7 @@ void GraphWidget::setLabels(QString title, QString xLabel, QString yLabel)
     m_y_title   = yLabel;
 }
 
-void GraphWidget::plotList(QList<int> values, int maxValue, int minValue)
+void GraphWidget::plotList(QList<int> values, int maxValue, int /*minValue*/)
 {
     int delta_X = getPositionX(values.size());
     m_col = values.length();
@@ -85,7 +85,7 @@ void GraphWidget::plotList(QList<int> values, int maxValue, int minValue)
     }
 }
 
-void GraphWidget::plotListLists(QList< QList<int> > lists, int maxValue, int minValue)
+void GraphWidget::plotListLists(QList< QList<int> > lists, int maxValue, int /*minValue*/)
 {
 
     m_numeroSerie = lists.size();
@@ -133,7 +133,7 @@ int GraphWidget::getPositionX(int numCol)
     return res;
 }
 
-void GraphWidget::drawBackground(QPainter *painter, const QRectF &rect)
+void GraphWidget::drawBackground(QPainter *painter, const QRectF &/*rect*/)
 {
     drawLabelsY(painter);
     drawLabelsX(painter);
@@ -222,7 +222,7 @@ QString GraphWidget::getRes()
 {
     QString res;
     QList<QGraphicsItem *> list = scene->items();
-    int i = 0;
+
     foreach( QGraphicsItem * item, list )
     {
         if( Column * node = qgraphicsitem_cast<Column *>( item ) ) // the QGraphicsItem is a Node
@@ -237,7 +237,6 @@ QString GraphWidget::getRes()
 QList<int> GraphWidget::getValues() {
     QList<int> res;
     QList<QGraphicsItem *> list = scene->items();
-    int i = 0;
     foreach( QGraphicsItem * item, list )
     {
         if( Column * node = qgraphicsitem_cast<Column *>( item ) ) // the QGraphicsItem is a Node
