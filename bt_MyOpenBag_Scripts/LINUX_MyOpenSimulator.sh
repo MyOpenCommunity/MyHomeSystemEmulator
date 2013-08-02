@@ -23,3 +23,4 @@ echo cd bin >> VDK/VirtualDevelopmentKit.sh
 echo ./VirtualDevelopmentKit >> VDK/VirtualDevelopmentKit.sh
 chmod +x VDK/VirtualDevelopmentKit.sh
 tar vczf INSTALLER_VDK_Linux.tar.gz VDK
+rm -fr VDK
