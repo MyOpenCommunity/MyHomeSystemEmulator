@@ -13,13 +13,15 @@ cp /usr/local/Trolltech/Qt-4.8.4/lib/QtGui.framework/Versions/4/QtGui MyOpenSimu
 cp -r  /usr/local/Trolltech/Qt-4.8.4/lib/QtGui.framework/Versions/4/Resources/qt_menu.nib MyOpenSimulator/bin/.
 
 ##  Copy simulator stuff
-cp ../BUILD_DEB/libplant/liblibplant.2.1.2.dylib MyOpenSimulator/bin/.
+cp ../BUILD_DEB/libplant/liblibplant.2.1.3.dylib MyOpenSimulator/bin/.
 cd ./MyOpenSimulator/bin
-ln -s liblibplant.2.1.2.dylib ./liblibplant.2.1.dylib
-ln -s liblibplant.2.1.2.dylib ./liblibplant.2.dylib
-ln -s liblibplant.2.1.2.dylib ./liblibplant.dylib
+ln -s liblibplant.2.1.3.dylib ./liblibplant.2.1.dylib
+ln -s liblibplant.2.1.3.dylib ./liblibplant.2.dylib
+ln -s liblibplant.2.1.3.dylib ./liblibplant.dylib
 cd ../..
 cp -r ../BUILD_DEB/myhome MyOpenSimulator/.
+rm -fr ./MyOpenSimulator/myhome/Resources
+mkdir .//MyOpenSimulator/myhome/Resources
 cp ../BUILD_DEB/MyOpenBagClient/MyOpenSimulator.app/Contents/MacOS/MyOpenSimulator MyOpenSimulator/bin/.
 
 ##  Create simulator sturtup script
