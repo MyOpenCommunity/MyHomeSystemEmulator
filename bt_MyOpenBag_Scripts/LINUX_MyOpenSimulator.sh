@@ -1,3 +1,4 @@
+#!/bin/bash
 mkdir VDK
 mkdir VDK/bin
 cp /usr/local/Trolltech/Qt-4.8.4/lib/libQtXml.so VDK/bin/.
@@ -15,12 +16,13 @@ ln -s liblibplant.so.2.1.3 VDK/bin/liblibplant.so.2.1
 ln -s liblibplant.so.2.1 VDK/bin/liblibplant.so.2
 ln -s liblibplant.so.2 VDK/bin/liblibplant.so
 cp -r ../BUILD_REL/myhome VDK/.
-cp ../BUILD_REL/MyOpenBagClient/MyOpenSimulator VDK/bin/VirtualDevelopmentKit
-touch VDK/VirtualDevelopmentKit.sh
-echo "#!/bin/bash" >> VDK/VirtualDevelopmentKit.sh
-echo export LD_LIBRARY_PATH="$"PWD/bin >> VDK/VirtualDevelopmentKit.sh
-echo cd bin >> VDK/VirtualDevelopmentKit.sh
-echo ./VirtualDevelopmentKit >> VDK/VirtualDevelopmentKit.sh
-chmod +x VDK/VirtualDevelopmentKit.sh
+rm -fr ./VDK/myhome/Resources/*
+cp ../BUILD_REL/MyOpenBagClient/MyOpenSimulator VDK/bin/vdk
+touch VDK/vdk.sh
+echo "#!/bin/bash" >> VDK/vdk.sh
+echo export LD_LIBRARY_PATH="$"PWD/bin >> VDK/vdk.sh
+echo cd bin >> VDK/vdk.sh
+echo ./vdk >> VDK/vdk.sh
+chmod +x VDK/vdk.sh
 tar vczf INSTALLER_VDK_Linux.tar.gz VDK
 rm -fr VDK
