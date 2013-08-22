@@ -124,8 +124,7 @@ void F520xmlserializer::serialize(QString deviceID, F520Status *f520, QDomDocume
             if( ! inFile->open( QIODevice::ReadOnly ) )
             {
                 qDebug() << f520->getXmlPath() << " Not exist";
-                if (!createNewXml(inFile))
-                {
+                if (!createNewXml(inFile)) {
                     sysErr = SysError(SysError::F520_CAN_NOT_OPEN_FILE, "F520 can not open or create xml resource file");
                     return;
                 }
