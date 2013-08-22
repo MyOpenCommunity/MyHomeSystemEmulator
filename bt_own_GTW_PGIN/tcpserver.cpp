@@ -135,7 +135,7 @@ void TcpServer::cmdRead(){
 bool TcpServer::write(const QString value){
 
     foreach (QTcpSocket *client, m_clients) {
-        if ((m_clientsType[client->socketDescriptor()] == MONITOR_Channel))
+        if (m_clientsType[client->socketDescriptor()] == MONITOR_Channel)
         {
             qDebug() << "Send Message To client: " << client->socketDescriptor() << " - " << value.toStdString().c_str();
             client->write(value.toStdString().c_str());
