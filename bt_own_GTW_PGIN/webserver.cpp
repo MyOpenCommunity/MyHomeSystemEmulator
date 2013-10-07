@@ -67,10 +67,15 @@ void WebServer::acceptConnection()
 {
     qDebug()<< "acceptHandler, have new pending connecctions: ";
     QTcpSocket *client = m_tcpSckSrv->nextPendingConnection();
-    m_clients.insert(QString::number(client->socketDescriptor()), client);
+    if (client != NULL) {
 
-    connect(client, SIGNAL(readyRead()), this, SLOT(startRead()));
-    connect(client, SIGNAL(disconnected()), this, SLOT(clientDisconnected()));
+        m_clients.insert(QString::number(client->socketDescriptor()), client);
+
+        connect(client, SIGNAL(readyRead()), this, SLOT(startRead()));
+        connect(client, SIGNAL(disconnected()), this, SLOT(clientDisconnected()));
+    } else {
+        qDebug()<< "acceptHandler, have no new pending connecctions: ";
+    }
 
 }
 

@@ -607,10 +607,14 @@ void BtF520_dev::UpdateTime(int month, int day, int hour, int minute) {
     SysError theErr;
 
     QStringList energyVal = F520xmlserializer::query(m_f520Status, QString::number(day), QString::number(month), theErr).split('.');
-    if ( m_currentHour != hour) {
-        m_totalizers[0] += energyVal[hour].toInt();
-        m_totalizers[1] += energyVal[hour].toInt();
-        m_allTimeTot += energyVal[hour].toInt();
+    if (m_currentHour != hour) {
+        if (energyVal.count() > hour) {
+            m_totalizers[0] += energyVal[hour].toInt();
+            m_totalizers[1] += energyVal[hour].toInt();
+            m_allTimeTot += energyVal[hour].toInt();
+        } else {
+            qDebug() << "Totalizer Error, no energy item found";
+        }
     }
 
     m_currentDay = day;

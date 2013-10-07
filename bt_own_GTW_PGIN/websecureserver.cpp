@@ -65,10 +65,12 @@ void WebSecureServer::acceptConnection()
 {
     //    qDebug()<< "acceptHandler, have new pending connecctions: ";
     QSslSocket *client = m_tcpSckSrv->socket;
-    m_clients.insert(QString::number(client->socketDescriptor()), client);
+    if (client != NULL) {
+        m_clients.insert(QString::number(client->socketDescriptor()), client);
 
-    connect(client, SIGNAL(readyRead()), this, SLOT(startRead()));
-    connect(client, SIGNAL(disconnected()), this, SLOT(clientDisconnected()));
+        connect(client, SIGNAL(readyRead()), this, SLOT(startRead()));
+        connect(client, SIGNAL(disconnected()), this, SLOT(clientDisconnected()));
+    }
 }
 
 void WebSecureServer::startRead() {
