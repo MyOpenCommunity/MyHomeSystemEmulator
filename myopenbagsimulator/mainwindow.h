@@ -37,7 +37,7 @@ private:
     void openPlantFile(QString fileName);
     void closePlant(QString plantName);
     void createBus(QString idGw, QString busName="");
-    void createGateway(QString idGw, QString busId, QString gtwName="", QString pos="");
+    void createGateway(QString idGw, QString busId, QString gtwName="", QString pos="", QString conf="");
     void createDevice(QString idDev, QString busId, QString devName="", QString pos="", QString conf="");
     void loadPlant(QDomElement el);
     void loadBus(QDomElement el);

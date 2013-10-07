@@ -8,7 +8,7 @@ QT       += core gui xml
 
 TARGET = MyOpenSimulator
 TEMPLATE = app
-VERSION = 1.3.0
+VERSION = 1.3.1
 
 DEFINES += VERSION=\\\"$$VERSION\\\"
 

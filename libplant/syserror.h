@@ -7,42 +7,44 @@ class SysError
 
 public:
 
-    static const int NO_ERROR                   = 0;
+    static const unsigned int NO_ERROR                   = 0;
 
-    static const int F411_SET_GRP_ERROR         = 1;
-    static const int F411_SET_PL_ERROR          = 2;
-    static const int F411_SET_A_ERROR           = 3;
-    static const int F411_NO_PARAMETER_SET      = 4;
-    static const int F411_LED_NOT_FOUND         = 5;
-    static const int F411_SLOT_NOT_CONFIGURED   = 6;
+    static const unsigned int F411_SET_GRP_ERROR         = 1;
+    static const unsigned int F411_SET_PL_ERROR          = 2;
+    static const unsigned int F411_SET_A_ERROR           = 3;
+    static const unsigned int F411_NO_PARAMETER_SET      = 4;
+    static const unsigned int F411_LED_NOT_FOUND         = 5;
+    static const unsigned int F411_SLOT_NOT_CONFIGURED   = 6;
 
-    static const int GWT_OVERFLOW               = 101;
-    static const int GWT_PASSWORD_ERROR         = 102;
-    static const int TCP_ERROR                  = 103;
-    static const int HTTP_ERROR                 = 104;
-    static const int HTTPS_ERROR                = 105;
+    static const unsigned int GWT_OVERFLOW               = 101;
+    static const unsigned int GWT_PASSWORD_ERROR         = 102;
+    static const unsigned int TCP_ERROR                  = 103;
+    static const unsigned int HTTP_ERROR                 = 104;
+    static const unsigned int HTTPS_ERROR                = 105;
+    static const unsigned int GWT_HTTP_PORT_ERROR        = 106;
+    static const unsigned int GWT_HTTPS_PORT_ERROR       = 107;
 
-    static const int CAM_SET_GRP_ERROR          = 201;
-    static const int CAM_SET_PL_ERROR           = 202;
-    static const int CAM_SET_A_ERROR            = 203;
-    static const int CAM_NO_PARAMETER_SET       = 204;
-    static const int CAM_IMAGE_DIR_NOT_FOUND    = 205;
-    static const int CAM_NO_IMAGES_IN_DIR       = 206;
+    static const unsigned int CAM_SET_GRP_ERROR          = 201;
+    static const unsigned int CAM_SET_PL_ERROR           = 202;
+    static const unsigned int CAM_SET_A_ERROR            = 203;
+    static const unsigned int CAM_NO_PARAMETER_SET       = 204;
+    static const unsigned int CAM_IMAGE_DIR_NOT_FOUND    = 205;
+    static const unsigned int CAM_NO_IMAGES_IN_DIR       = 206;
 
-    static const int FOLDER_NOT_FOUND           = 301;
+    static const unsigned int FOLDER_NOT_FOUND           = 301;
 
-    static const int GEN_TRIGGER_MSG_NOT_FOUND  = 401;
-    static const int GEN_XML_WAS_WRONG_FORMAT  = 402;
+    static const unsigned int GEN_TRIGGER_MSG_NOT_FOUND  = 401;
+    static const unsigned int GEN_XML_WAS_WRONG_FORMAT   = 402;
 
-    static const int F422_SET_I3_ERROR          = 501;
-    static const int F422_SET_I4_ERROR          = 502;
+    static const unsigned int F422_SET_I3_ERROR          = 501;
+    static const unsigned int F422_SET_I4_ERROR          = 502;
 
-    static const int F520_CAN_NOT_OPEN_FILE     = 601;
-    static const int F520_XML_PARSER_ERROR      = 602;
-    static const int F520_RESOUCES_NOT_FOUND    = 603;
-    static const int F520_RESOUCES_NOT_EXIST    = 604;
-    static const int F520_QUERY_ERROR           = 605;
-    static const int F520_RESOURCE_ERROR        = 606;
+    static const unsigned int F520_CAN_NOT_OPEN_FILE     = 601;
+    static const unsigned int F520_XML_PARSER_ERROR      = 602;
+    static const unsigned int F520_RESOUCES_NOT_FOUND    = 603;
+    static const unsigned int F520_RESOUCES_NOT_EXIST    = 604;
+    static const unsigned int F520_QUERY_ERROR           = 605;
+    static const unsigned int F520_RESOURCE_ERROR        = 606;
 
 public:
     SysError();
@@ -52,11 +54,17 @@ public:
     QString toString();
     bool isError();
 
+    unsigned int errCode() const;
+
 private:
     unsigned int m_errCode;
     QString m_errMsg;
 };
 
+inline unsigned int SysError::errCode() const
+{
+    return m_errCode;
+}
 
 inline SysError::SysError():m_errCode(NO_ERROR),m_errMsg("")
 {

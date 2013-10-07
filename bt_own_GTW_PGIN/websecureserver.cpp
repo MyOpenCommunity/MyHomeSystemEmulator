@@ -7,7 +7,6 @@
 #include <syserror.h>
 
 int WebSecureServer::MAXCONNECTION = 10;
-int WebSecureServer::WEB_SERVER_PORT = 8001;
 
 static QString REQ_IMAGE = "*6*A*0000##";
 static QString HTTP_OK = "";
@@ -24,12 +23,7 @@ WebSecureServer::WebSecureServer()
     qDebug() << "Create a Server HTTPS";
     m_channelType = Unknown_Channel;
     m_tcpSckSrv = new QMyServer();
-}
-
-WebSecureServer::WebSecureServer(QSharedPointer<GwtStatus> gtwStatus) {
-    qDebug() << "Create a Server HTTPS";
-    m_gtwStatus = gtwStatus;
-    m_tcpSckSrv = new QMyServer();
+    m_port = -1;
 }
 
 WebSecureServer::~WebSecureServer() {
@@ -38,14 +32,28 @@ WebSecureServer::~WebSecureServer() {
         m_tcpSckSrv->close();
 }
 
-void WebSecureServer::init(SysError &sysErr){
+void WebSecureServer::init(QSharedPointer<GwtStatus> gtwStatus, SysError &sysErr){
     qDebug() << "HTTPS Server initialized";
+    m_gtwStatus = gtwStatus;
+    m_port = gtwStatus->httpsPort();
+
+    if (m_port == -1) {
+        return;
+    }
+
+    m_tcpSckSrv->setMaxPendingConnections(MAXCONNECTION);
+    if (m_tcpSckSrv->isListening()) {
+        qDebug() << "Server is already connected on TCP port: " << m_tcpSckSrv->serverPort();
+        qDebug() << "Close current connection";
+        m_tcpSckSrv->close();
+    }
+
     this->setProperty(TYPE.toStdString().c_str(), PlantMessage::HTTPS);
 
     m_tcpSckSrv->setMaxPendingConnections(MAXCONNECTION);
-    if (!m_tcpSckSrv->listen(QHostAddress::Any, WEB_SERVER_PORT)) {
+    if (!m_tcpSckSrv->listen(QHostAddress::Any, m_port)) {
         qDebug()<< "Unable to start the server: " << m_tcpSckSrv->errorString();
-        QString msgErr = "Unable to start the server: " + m_tcpSckSrv->errorString() + " (" + QString::number(WEB_SERVER_PORT) + ")";
+        QString msgErr = "Unable to start the server: " + m_tcpSckSrv->errorString() + " (" + QString::number(m_port) + ")";
         sysErr = SysError(SysError::HTTPS_ERROR, msgErr);
         return;
     }

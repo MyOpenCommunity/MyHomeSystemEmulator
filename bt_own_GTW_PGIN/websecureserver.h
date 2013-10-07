@@ -16,10 +16,9 @@ class WebSecureServer : public QObject
     Q_OBJECT
 public:
     WebSecureServer();
-    WebSecureServer(QSharedPointer<GwtStatus> gtwStatus);
     ~WebSecureServer();
 
-    void init(SysError &sysErr);
+    void init(QSharedPointer<GwtStatus> gtwStatus, SysError &sysErr);
 
     enum ChannelType {
         CMD_Channel = 0,
@@ -37,6 +36,7 @@ private:
     ChannelType m_channelType;
     QSslSocket *m_client;
     QSharedPointer<GwtStatus> m_gtwStatus;
+    int m_port;
 
 public slots:
     void acceptConnection();

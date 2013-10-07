@@ -18,10 +18,10 @@ Btowngtw::Btowngtw()    {
     m_gtwStatus = QSharedPointer<GwtStatus>(new GwtStatus("C1"));
     m_tcpSckSrv = QSharedPointer<TcpServer>(new TcpServer());
     connect(m_tcpSckSrv.data(), SIGNAL(sendCMD(QString, QString)), this, SLOT(receiveCMD(QString, QString)));
-    m_webSckSrv = QSharedPointer<WebServer>(new WebServer(m_gtwStatus));
+    m_webSckSrv = QSharedPointer<WebServer>(new WebServer());
     connect(m_webSckSrv.data(), SIGNAL(sendCMD(QString, QString)), this, SLOT(receiveCMD(QString, QString)));
 
-    m_webSecSckSrv = QSharedPointer<WebSecureServer>(new WebSecureServer(m_gtwStatus));
+    m_webSecSckSrv = QSharedPointer<WebSecureServer>(new WebSecureServer());
     connect(m_webSecSckSrv.data(), SIGNAL(sendCMD(QString, QString)), this, SLOT(receiveCMD(QString, QString)));
 }
 
@@ -33,12 +33,9 @@ void Btowngtw::init(SysError& theErr) {
     m_tcpSckSrv->init(theErr);
     if (theErr.isError())
         return;
-    m_webSckSrv->init(theErr);
-    if (theErr.isError())
-        return;
-    m_webSecSckSrv->init(theErr);
-    if (theErr.isError())
-        return;
+    m_webSckSrv->init(m_gtwStatus, theErr);
+    m_webSecSckSrv->init(m_gtwStatus, theErr);
+
 }
 
 void    Btowngtw::setID(const QString& theID)  {
@@ -119,6 +116,10 @@ unsigned int Btowngtw::executeCmd(CMD_PRIO /*thePrio*/, const QByteArray& theCmd
         QDomDocument xml;
         xml.setContent(list2[1]);
         GWTXmlSerializer::deserialize(xml, m_gtwStatus, theErr);
+        if (m_gtwStatus->httpPortIsChanged())
+            m_webSckSrv->init(m_gtwStatus, theErr);
+        if (m_gtwStatus->httpsPortIsChanged())
+            m_webSecSckSrv->init(m_gtwStatus, theErr);
     }
         break;
     default:

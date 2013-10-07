@@ -14,10 +14,9 @@ class WebServer : public QObject
     Q_OBJECT
 public:
     WebServer();
-    WebServer(QSharedPointer<GwtStatus> gtwStatus);
     ~WebServer();
 
-    void init(SysError &sysErr);
+    void init(QSharedPointer<GwtStatus> gtwStatus, SysError &sysErr);
 
     enum ChannelType {
         CMD_Channel = 0,
@@ -35,6 +34,7 @@ private:
     ChannelType m_channelType;
     QTcpSocket *m_client;
     QSharedPointer<GwtStatus> m_gtwStatus;
+    int m_port;
 
 
 public slots:

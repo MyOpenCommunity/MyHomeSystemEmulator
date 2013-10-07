@@ -12,7 +12,7 @@ TEMPLATE = lib
 CONFIG += plugin
 INCLUDEPATH = ../libplant
 DESTDIR = ../myhome/plugins
-VERSION = 2.2.0
+VERSION = 2.2.1
 TARGET_EXT = .dll
 
 DEFINES += BT_OWN_GTW_PGIN_LIBRARY

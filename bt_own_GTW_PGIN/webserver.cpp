@@ -4,7 +4,7 @@
 #include <plantmessage.h>
 
 int WebServer::MAXCONNECTION = 10;
-int WebServer::WEB_SERVER_PORT = 8000;
+//int WebServer::WEB_SERVER_PORT = 10000;
 
 static QString REQ_IMAGE = "*6*A*0000##";
 static QString HTTP_OK = "";
@@ -20,12 +20,7 @@ static QString TYPE = "TYPE";
 WebServer::WebServer() {
     qDebug() << "Create a Server HTTP";
     m_tcpSckSrv = new QTcpServer(this);
-}
-
-WebServer::WebServer(QSharedPointer<GwtStatus> gtwStatus) {
-    qDebug() << "Create a Server HTTP";
-    m_gtwStatus = gtwStatus;
-    m_tcpSckSrv = new QTcpServer(this);
+    m_port = -1;
 }
 
 WebServer::~WebServer() {
@@ -36,17 +31,30 @@ WebServer::~WebServer() {
     }
 }
 
-void WebServer::init(SysError &sysErr){
+void WebServer::init(QSharedPointer<GwtStatus> gtwStatus, SysError &sysErr){
     qDebug() << "HTTP Server initialized";
+
+    m_gtwStatus = gtwStatus;
+    m_port = gtwStatus->httpPort();
+
+    if (m_port == -1) {
+        return;
+    }
+
+    m_tcpSckSrv->setMaxPendingConnections(MAXCONNECTION);
+    if (m_tcpSckSrv->isListening()) {
+        qDebug() << "Server is already connected on TCP port: " << m_tcpSckSrv->serverPort();
+        qDebug() << "Close current connection";
+        m_tcpSckSrv->close();
+    }
 
     m_channelType = Unknown_Channel;
     this->setProperty(TYPE.toStdString().c_str(), PlantMessage::HTTP);
     qDebug() << "Property type: " << this->property(TYPE.toStdString().c_str()).toString();
 
-    m_tcpSckSrv->setMaxPendingConnections(MAXCONNECTION);
-    if (!m_tcpSckSrv->listen(QHostAddress::Any, WEB_SERVER_PORT)) {
+    if (!m_tcpSckSrv->listen(QHostAddress::Any, m_port)) {
         qDebug()<< "Unable to start the server: " << m_tcpSckSrv->errorString();
-        QString msgErr = "Unable to start the server: " + m_tcpSckSrv->errorString() + " (" + QString::number(WEB_SERVER_PORT) + ")";
+        QString msgErr = "Unable to start the server: " + m_tcpSckSrv->errorString() + " (" + QString::number(m_port) + ")";
         sysErr = SysError(SysError::HTTP_ERROR, msgErr);
         return;
     }

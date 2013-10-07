@@ -577,7 +577,7 @@ void MainWindow::loadDevices(QDomElement el, QString busId)
     if (el.tagName().compare(DEV) == 0)
         createDevice(devType, busId, devName, devPos, configuration.toString());
     if (el.tagName().compare(GTW) == 0)
-        createGateway(devType, busId, devName, devPos);
+        createGateway(devType, busId, devName, devPos, configuration.toString());
 }
 
 
@@ -618,7 +618,7 @@ void MainWindow::createBus(QString idBus, QString busName)
 
 }
 
-void MainWindow::createGateway(QString idGw, QString busId, QString gtwName, QString pos)
+void MainWindow::createGateway(QString idGw, QString busId, QString gtwName, QString pos, QString conf)
 {
     // Recupero il plant
     QSharedPointer<Plant> plant = PlantMgr::getInstance().getPlant(m_plantName);
@@ -637,15 +637,8 @@ void MainWindow::createGateway(QString idGw, QString busId, QString gtwName, QSt
     else
         theGateWay->setID(gtwName);
     qDebug()<<"This is the GateWay : "<< theGateWay->getID();
-    plant->addGateway(theGateWay, theErr);
-    if (theErr.isError())
-    {
-        QMessageBox::information(0, QString("Information"), theErr.toString(), QMessageBox::Ok);
-        return;
-    }
 
-    qDebug()<<"Initialize the GateWay : "<< theGateWay->getID();
-    theGateWay->init(theErr);
+    plant->addGateway(theGateWay, theErr);
     if (theErr.isError())
     {
         QMessageBox::information(0, QString("Information"), theErr.toString(), QMessageBox::Ok);
@@ -663,7 +656,28 @@ void MainWindow::createGateway(QString idGw, QString busId, QString gtwName, QSt
         qDebug() << "Impianto troppo piccolo";
         _da->delDevice(dm->getDId());
         QMessageBox::information(0, QString("Information"), "Plant too small ...", QMessageBox::Ok);
+        plant->removeGateway(theGateWay->getID());
         return;
+    }
+    if (!conf.isEmpty())
+    {
+        _da->setupDeviceConfiguration(dm->getDId(), conf);
+    }
+
+    qDebug()<<"Initialize the GateWay : "<< theGateWay->getID();
+    theGateWay->init(theErr);
+    if (theErr.isError())
+    {
+        QMessageBox::information(0, QString("Information"), theErr.toString(), QMessageBox::Ok);
+        if ((theErr.errCode() != SysError::HTTP_ERROR) && (theErr.errCode() != SysError::HTTPS_ERROR)) {
+            qDebug()<<"Error I can not create GateWay : "<< theGateWay->getID();
+            plant->removeGateway(theGateWay->getID());
+            return;
+        }
+        else {
+            qDebug()<<"Error, but I can create GateWay : "<< theGateWay->getID();
+            theErr = SysError();
+        }
     }
 }
 

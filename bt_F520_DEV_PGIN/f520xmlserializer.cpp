@@ -120,6 +120,7 @@ void F520xmlserializer::serialize(QString deviceID, F520Status *f520, QDomDocume
             f520->setXmlPath(XML_SRC + deviceID + "_" + FILE_NAME);
         }
         if (!QFile::exists(f520->getXmlPath())) {
+            qDebug() << "File Exist, try to open it";
             inFile = QSharedPointer<QFile>( new QFile(f520->getXmlPath()));
             if( ! inFile->open( QIODevice::ReadOnly ) )
             {
@@ -128,9 +129,12 @@ void F520xmlserializer::serialize(QString deviceID, F520Status *f520, QDomDocume
                     sysErr = SysError(SysError::F520_CAN_NOT_OPEN_FILE, "F520 can not open or create xml resource file");
                     return;
                 }
+                qDebug()  << inFile->fileName() << " is Open";
             }
         } else {
+            qDebug() << "File exist";
             inFile = QSharedPointer<QFile>( new QFile(f520->getXmlPath()));
+            qDebug()  << inFile->fileName() << " is Open";
         }
         xmlSrc.setAttribute(VALUE, f520->getXmlPath());
         inFile->open(QIODevice::ReadOnly);

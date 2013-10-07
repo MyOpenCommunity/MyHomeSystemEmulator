@@ -20,12 +20,25 @@ public:
 
     inline QString              getPwd() { return m_password; }
 
-    bool                        setPwd(QString pwd) { m_password = pwd; return(true); }
+    inline bool                 setPwd(QString pwd) { m_password = pwd; return(true); }
+
+    int httpPort() const;
+    bool setHttpPort(int httpPort);
+
+    int httpsPort() const;
+    bool setHttpsPort(int httpsPort);
+
+    bool httpsPortIsChanged();
+    bool httpPortIsChanged();
 
 private:
     QString m_id;
     bool m_configured;
     QString m_password;
+    int m_httpPort;
+    int m_httpsPort;
+    bool m_httpPortChange;
+    bool m_httpsPortChange;
 };
 
 #endif // GWTSTATUS_H
