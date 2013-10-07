@@ -69,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     // Status Bar Init
-    m_speed << "x1" << "x2" << "x6" << "x12" << "x30" << "x60" << "x120" << "x240" << "x6000";
+    m_speed << "x1" << "x2" << "x6" << "x12" << "x30" << "x60" << "x120" << "x240";
     QString message;
     message = QString::number(1) + " - " + getMonth(1) + " (h" + QString("%1").arg(0, 2, 10, QChar('0')).toUpper() + ")";
     m_msg = new QLabel(message, this);
