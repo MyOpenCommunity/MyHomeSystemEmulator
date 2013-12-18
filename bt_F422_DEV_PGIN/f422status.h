@@ -10,7 +10,7 @@ public:
 
     F422Status(QString id);
 
-    inline bool                         setI3(QString i3) { if(i3.compare("0") == 0) { m_I3 = ""; } else { m_I3 = i3; } return(true); }
+    inline bool                         setI3(QString i3) { /*if(i3.compare("0") == 0) { m_I3 = ""; } else*/ { m_I3 = i3; } return(true); }
 
     inline QString                      getI3() { return(m_I3); }
 

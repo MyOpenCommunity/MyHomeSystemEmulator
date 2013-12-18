@@ -26,7 +26,7 @@
 #include <QSharedPointer>
 #include <QDebug>
 
-static QString MAINWINDOW_TITLE = "MyOpenSimulator";
+static QString MAINWINDOW_TITLE = "My Home Virtual Development Kit";
 static QString RESOURCES_FOLDER = ":/xml/resources/";
 static QString DEFAULT_PLANT    = "default.plnt";
 
@@ -264,7 +264,7 @@ void MainWindow::about()
 {
     QString vdkVersion = "VDK Version: ";
     vdkVersion.append(VERSION);
-    QMessageBox::about(this, tr("About OPEN BAG"),tr(vdkVersion.toStdString().c_str()));
+    QMessageBox::about(this, tr("About VDK"),tr(vdkVersion.toStdString().c_str()));
 }
 
 void MainWindow::connectToServer()
