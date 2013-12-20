@@ -194,13 +194,13 @@ void    BtF422_dev::ReceiveMessage( PlantMessage &theMsg, SysError &theErr) {
     {
         // controll if message is form me
         QStringList where = localMsg.getValue(PlantMessage::WHERE).split("#", QString::SkipEmptyParts);
+        if (where.length() < 3) {
+            qDebug() << className() << ": Discart Message, it is not for me" ;
+            return;
+        }
         if(where.at(0).compare(GENERALE) == 0) {
             qDebug() << className() << ": It is general message, send to local bus";
             currentSecondBus->ReceiveMessage(theMsg, theErr);
-            return;
-        }
-        if (where.length() < 3) {
-            qDebug() << className() << ": Discart Message, it is not for me" ;
             return;
         }
         if (where.at(1).compare(LOCAL_BUS) != 0) {

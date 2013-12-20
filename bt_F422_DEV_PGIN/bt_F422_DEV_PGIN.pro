@@ -13,7 +13,7 @@ TEMPLATE = lib
 CONFIG += plugin
 INCLUDEPATH = ../libplant
 DESTDIR = ../myhome/plugins
-VERSION = 1.0.5
+VERSION = 1.0.6
 TARGET_EXT = .dll
 
 DEFINES += BT_F422_DEV_PGIN_LIBRARY
