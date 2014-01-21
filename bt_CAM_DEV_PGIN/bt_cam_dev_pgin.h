@@ -8,6 +8,8 @@
 class Bt_CAM_DEV_PGIN : public QObject, public DeviceFactory{
     Q_OBJECT
     Q_INTERFACES(DeviceFactory)
+    Q_PLUGIN_METADATA(IID "it.bticino.myopen.DeviceFactoryInterface/1.0")
+
 public:
     Bt_CAM_DEV_PGIN();
     ~Bt_CAM_DEV_PGIN(){}

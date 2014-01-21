@@ -1,6 +1,6 @@
 #include "graphwidget.h"
 #include "histogram.h"
-#include <QtGui>
+#include <QtWidgets>
 #include <column.h>
 
 #include <math.h>

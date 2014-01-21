@@ -20,5 +20,3 @@ const QString                    Bt_GEN_DEV_PGIN::getFactoryID(void)    {
 
     return(BtGEN_dev::className().toStdString().c_str());
 }
-
-Q_EXPORT_PLUGIN2(Bt_GEN_DEV_PGIN, Bt_GEN_DEV_PGIN)

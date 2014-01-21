@@ -11,6 +11,7 @@ class  Bt_own_GTW_PGIN : public QObject, public GatewayFactory
 {
     Q_OBJECT
     Q_INTERFACES(GatewayFactory)
+    Q_PLUGIN_METADATA(IID "it.bticino.myopen.GatewayFactoryInterface/1.0")
 
 public:
     Bt_own_GTW_PGIN();

@@ -1,8 +1,8 @@
 #ifndef BT_PLANT_PGIN_H
 #define BT_PLANT_PGIN_H
 
-#include <plantfactory.h>
 #include "bt_PLANT_PGIN_global.h"
+#include <plantfactory.h>
 
 
 class  Bt_PLANT_PGIN : public QObject, public PlantFactory
@@ -10,6 +10,7 @@ class  Bt_PLANT_PGIN : public QObject, public PlantFactory
 {
     Q_OBJECT
     Q_INTERFACES(PlantFactory)
+    Q_PLUGIN_METADATA(IID "it.bticino.myopen.PlantFactoryInterface/1.0")
 
 public:
     Bt_PLANT_PGIN();

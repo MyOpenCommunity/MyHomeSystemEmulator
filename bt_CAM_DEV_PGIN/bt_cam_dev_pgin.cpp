@@ -18,5 +18,3 @@ const QString                    Bt_CAM_DEV_PGIN::getFactoryID(void)    {
 
     return(Btcam_dev::className().toStdString().c_str());
 }
-
-Q_EXPORT_PLUGIN2(Bt_CAM_DEV_PGIN, Bt_CAM_DEV_PGIN)

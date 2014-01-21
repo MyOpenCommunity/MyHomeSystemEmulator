@@ -11,7 +11,7 @@ public:
 
     Q_OBJECT
     Q_INTERFACES(BusConnFactory)
-
+    Q_PLUGIN_METADATA(IID "it.bticino.myopen.BusConnFactoryInterface/1.0")
 public:
     Bt_scs_BUSCONN_PGIN();
     ~Bt_scs_BUSCONN_PGIN(){}

@@ -20,4 +20,3 @@ const QString Bt_PLANT_PGIN::getFactoryID(void) {
     return(BtPlant::className().toStdString().c_str());
 }
 
-Q_EXPORT_PLUGIN2(bt_PLANT_PGIN, Bt_PLANT_PGIN)

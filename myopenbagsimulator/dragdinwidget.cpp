@@ -1,5 +1,5 @@
 #include "dragdinwidget.h"
-#include <QtGui>
+#include <QtWidgets>
 #include <QMap>
 #include <devicewidget.h>
 #include <deviceadapter.h>

@@ -16,5 +16,3 @@ QSharedPointer<PlantGateway>    Bt_own_GTW_PGIN::createGateway(const QString& /*
 const QString                    Bt_own_GTW_PGIN::getFactoryID(void) {
      return(Btowngtw::className().toStdString().c_str());;
 }
-
-Q_EXPORT_PLUGIN2(bt_own_GTW_PGIN, Bt_own_GTW_PGIN)

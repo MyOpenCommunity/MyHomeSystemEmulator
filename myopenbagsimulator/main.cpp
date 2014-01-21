@@ -1,8 +1,8 @@
-#include <QtGui/QApplication>
 #include "mainwindow.h"
 #include <QFile>
 #include <QTextStream>
 #include <plantmgr.h>
+#include <QtWidgets/QApplication>
 
 
 int main(int argc, char *argv[])

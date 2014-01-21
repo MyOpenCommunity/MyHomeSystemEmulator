@@ -6,6 +6,9 @@
 #include <QDebug>
 #include <QDomDocument>
 
+#include <QtGlobal>
+#include <QCoreApplication>
+
 static const QString LOG_FILE_NAME = "MyOpenBag.log";
 static const QString DEBUG = "DEBUG";
 static const QString LOG = "LOG";
@@ -13,13 +16,14 @@ static const QString LOG = "LOG";
 static QFile m_logFile;
 static QTextStream *m_logOutput;
 
-QString logIsActive = "";
+QString PlantMgr::logIsActive = "";
 
 
-void myMessageOutput(QtMsgType type, const char *msg)
+//typedef void (*QtMessageHandler)(QtMsgType, const QMessageLogContext &, const QString &);
+void myMessageOutput(QtMsgType type, const QMessageLogContext &msgContext, const QString &msg)
 {
 
-    if(logIsActive.compare(LOG) == 0) {
+    if(PlantMgr::logIsActive.compare(LOG) == 0) {
         switch (type) {
         case QtDebugMsg:
             *m_logOutput << "Debug: " << msg << endl;
@@ -41,7 +45,9 @@ void PlantMgr::activeLog(QString active) {
 
     logIsActive = active;
     if(active.compare(DEBUG) != 0)
-        qInstallMsgHandler(myMessageOutput);
+        qInstallMessageHandler(myMessageOutput);
+        //qInstallMessageHandler(myMessageOutput);
+//        qInstallMsgHandler(myMessageOutput);
 
     if (logIsActive.compare(LOG) == 0) {
         m_logFile.setFileName(LOG_FILE_NAME);
@@ -272,6 +278,8 @@ void     PlantMgr::addPluginFactory(const QString& libName, PlantMgr::PGIN_TYPE 
     QPluginLoader loader(libName);
 
     thePlugInRef=loader.instance();
+
+    qDebug()<< thePlugInRef->metaObject()->className();
 
     if(thePlugInRef != 0)   {
 

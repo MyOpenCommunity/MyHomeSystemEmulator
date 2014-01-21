@@ -19,5 +19,3 @@ QString Bt_scs_BUSCONN_PGIN::getFactoryID(void)    {
     return(rtnValue.toStdString().c_str());
 }
 
-
-Q_EXPORT_PLUGIN2(Bt_scs_BUSCONN_PGIN, Bt_scs_BUSCONN_PGIN)

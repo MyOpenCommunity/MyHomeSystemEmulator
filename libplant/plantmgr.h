@@ -69,6 +69,8 @@ public:
 
     inline QString getCurrPlantName() {return(m_currPlantName); }
 
+    static QString logIsActive;
+
 private:
     //  Plant Manager is a Singleton object
     PlantMgr();

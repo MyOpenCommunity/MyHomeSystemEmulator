@@ -12,7 +12,7 @@
 
 #include <QDebug>
 #include <QFileDialog>
-#include <QtGui>
+#include <QtWidgets>
 #include <QTime>
 
 

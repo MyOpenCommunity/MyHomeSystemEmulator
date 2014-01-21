@@ -18,6 +18,3 @@ const QString                    Bt_F520_DEV_PGIN::getFactoryID(void)    {
     QString rtnValue = BtF520_dev::className();
     return(rtnValue.toStdString().c_str());
 }
-
-
-Q_EXPORT_PLUGIN2(Bt_F520_DEV_PGIN, Bt_F520_DEV_PGIN)

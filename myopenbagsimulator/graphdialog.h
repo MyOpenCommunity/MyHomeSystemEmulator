@@ -2,7 +2,7 @@
 #define GRAPHDIALOG_H
 
 #include <QDialog>
-#include <QtGui>
+#include <QtWidgets>
 #include <QDomElement>
 #include <QList>
 #include <QTabWidget>

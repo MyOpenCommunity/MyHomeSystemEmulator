@@ -9,6 +9,8 @@ public:
 
     Q_OBJECT
     Q_INTERFACES(DeviceFactory)
+    Q_PLUGIN_METADATA(IID "it.bticino.myopen.DeviceFactoryInterface/1.0")
+
 public:
     Bt_F520_DEV_PGIN();
     ~Bt_F520_DEV_PGIN(){}
