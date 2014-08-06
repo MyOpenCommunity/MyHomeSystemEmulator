@@ -7,8 +7,9 @@
 #include <QDialogButtonBox>
 #include <QDomElement>
 #include <QTabWidget>
-#include <QtWidgets>
 #include <syserror.h>
+#include <QGridLayout>
+#include <QFormLayout>
 
 class GeneralTab : public QWidget
 {

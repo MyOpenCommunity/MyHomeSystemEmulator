@@ -1,13 +1,13 @@
 #ifndef SYSERROR_H
 #define SYSERROR_H
 
-class QString;
+#include <QString>
 class SysError
 {
 
 public:
 
-    static const unsigned int NO_ERROR                   = 0;
+    static const unsigned int NO_ERROR_                   = 0;
 
     static const unsigned int F411_SET_GRP_ERROR         = 1;
     static const unsigned int F411_SET_PL_ERROR          = 2;
@@ -66,7 +66,7 @@ inline unsigned int SysError::errCode() const
     return m_errCode;
 }
 
-inline SysError::SysError():m_errCode(NO_ERROR),m_errMsg("")
+inline SysError::SysError():m_errCode(0),m_errMsg("")
 {
 
 }

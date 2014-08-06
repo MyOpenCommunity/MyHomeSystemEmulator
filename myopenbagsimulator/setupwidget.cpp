@@ -1,8 +1,12 @@
-
-
 #include <setupwidget.h>
+#include <QDir>
+#include <QFileDialog>
 #include <QList>
-
+#include <QLineEdit>
+#include <QLabel>
+#include <QDebug>
+#include <QComboBox>
+#include <QPushButton>
 
 static QString TAG_SLOT     = "slot";
 static QString TAG_NAME     = "name";

@@ -10,3 +10,7 @@ moc_*
 BIN_*
 myhome
 plant
+build-bt_GEN_DEV_PGIN-Desktop_Qt_5_2_0_MinGW_32bit-Debug/bt_GEN_DEV_PGIN_resource.rc
+build-bt_GEN_DEV_PGIN-Desktop_Qt_5_2_0_MinGW_32bit-Debug/Makefile.Debug
+build-bt_GEN_DEV_PGIN-Desktop_Qt_5_2_0_MinGW_32bit-Debug/Makefile.Release
+build-bt_GEN_DEV_PGIN-Desktop_Qt_5_2_0_MinGW_32bit-Debug/debug/qrc_bt_GEN_DEV_PGIN.cpp
